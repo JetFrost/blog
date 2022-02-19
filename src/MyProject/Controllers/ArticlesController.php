@@ -7,6 +7,7 @@ use MyProject\Exceptions\InvalidArgumentException;
 use MyProject\Exceptions\NotFoundException;
 use MyProject\Exceptions\UnauthorizedException;
 use MyProject\Models\Articles\Article;
+use MyProject\Models\Comments\Comment;
 use MyProject\Models\Users\User;
 
 class ArticlesController extends AbstractController {
@@ -23,10 +24,12 @@ class ArticlesController extends AbstractController {
             $propNames[] = $prop->getName();
         }
 
+        $comments = Comment::getCommentByArticleId($articleId);
+
 
         $author = $article->getAuthor();
 
-        $this->view->renderHtml('articles/view.php', ['article' => $article, 'author' => $author]);
+        $this->view->renderHtml('articles/view.php', ['article' => $article, 'author' => $author, 'comments' => $comments]);
     }
 
     public function edit(int $articleId){
@@ -103,7 +106,11 @@ class ArticlesController extends AbstractController {
         }
 
         $article->delete();
-        var_dump($article);
+//        var_dump($article);
     }
+
+//    public function addComment(){
+//        var_dump($_POST);
+//    }
 
 }

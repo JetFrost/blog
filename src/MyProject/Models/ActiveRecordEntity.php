@@ -68,7 +68,7 @@ abstract class ActiveRecordEntity{
     public function delete(){
         $db = Db::getInstance();
         $sql = 'DELETE FROM `'.static::getTableName().'` WHERE id = :id;';
-        var_dump($sql);
+//        var_dump($sql);
         $db->query($sql, [':id' => $this->id]);
         $this->id = null;
     }

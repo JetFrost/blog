@@ -10,5 +10,7 @@ return [
     '~^users/register$~' => [\MyProject\Controllers\UsersController::class, 'signUp'],
     '~^users/(\d+)/activate/(.+)$~' => [\MyProject\Controllers\UsersController::class, 'activate'],
     '~^users/login$~' => [\MyProject\Controllers\UsersController::class, 'login'],
-    '~^users/log-out$~' => [\MyProject\Controllers\UsersController::class, 'logOut']
+    '~^users/log-out$~' => [\MyProject\Controllers\UsersController::class, 'logOut'],
+    '~^articles/(\d+)/comments/add$~' => [\MyProject\Controllers\CommentsController::class, 'add'],
+//    '~^articles/(\d+)/comments/add$~' => [\MyProject\Controllers\ArticlesController::class, 'addComment']
 ];
