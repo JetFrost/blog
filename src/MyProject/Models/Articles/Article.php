@@ -2,7 +2,6 @@
 
 namespace MyProject\Models\Articles;
 
-//use http\Exception\InvalidArgumentException;
 use MyProject\Exceptions\InvalidArgumentException;
 use MyProject\Models\ActiveRecordEntity;
 use MyProject\Models\Users\User;
@@ -26,6 +25,23 @@ class Article extends ActiveRecordEntity {
     public function getAuthorId():int{return (int) $this->authorId;}
     public function getCreatedAt():string{return $this->createdAt;}
     public function getAuthor():User {return User::getById($this->authorId);}
+
+
+    public function getAbbreviatedText(){
+        $string = $this->text;
+        $your_desired_width = 100;
+        $string = substr($string, 0, $your_desired_width+1);
+
+        if (strlen($string) > $your_desired_width)
+        {
+            $string = wordwrap($string, $your_desired_width);
+            $i = strpos($string, "\n");
+            if ($i) {
+                $string = substr($string, 0, $i);
+            }
+        }
+        return $string;
+    }
 
     public function setName($name) {$this->name = $name;}
     public function setText($text) {$this->text = $text;}

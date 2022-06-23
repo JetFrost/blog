@@ -1,3 +1,5 @@
-<?php include __DIR__ . '/../header.php'; ?>
-    <h1>Страница не найдена</h1>
-<?php include __DIR__ . '/../footer.php'; ?>
+
+<div style="text-align:center;">
+    <h1 style="text-align:center; margin-top: 100px; font-size: 40px;">404</h1>
+    <p>Сторінку не знайдено</p>
+</div>

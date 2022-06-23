@@ -2,21 +2,16 @@
 
 namespace MyProject\Controllers;
 
+use MyProject\Exceptions\ForbiddenException;
 use MyProject\Exceptions\InvalidArgumentException;
+use MyProject\Exceptions\UnauthorizedException;
+use MyProject\Models\Comments\Comment;
 use MyProject\Models\Users\User;
 use MyProject\Models\Users\UserActivationService;
 use MyProject\Models\Users\UsersAuthService;
-use MyProject\Services\Db;
 use MyProject\Services\EmailSender;
-use MyProject\View\View;
 
-class UsersController {
-    /** @var View */
-    private $view;
-
-    public function __construct() {
-        $this->view = new View(__DIR__ . '/../../templates');
-    }
+class UsersController extends AbstractController {
 
     public function signUp():void {
 
@@ -93,4 +88,26 @@ class UsersController {
         UsersAuthService::deleteToken();
         header('Location: /');
     }
+
+    public function cabinet($userId){
+
+        $user = User::getById($userId);
+
+        if ($this->user === null) {
+            throw new UnauthorizedException();
+        }
+        if ($user === null || $this->user->getId() != $user->getId()){
+            if ($this->user->getRole() !== 'admin') throw new ForbiddenException();
+        }
+
+        $comments = Comment::getCommentsByUserId($userId);
+
+        $this->view->renderHTML('users/cabinet.php',[
+            'user' => $this->user,
+            'cabinetUser' => $user,
+            'comments' => $comments
+            ]);
+
+    }
+
 }

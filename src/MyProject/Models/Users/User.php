@@ -21,6 +21,7 @@ class User extends ActiveRecordEntity {
     public function getPasswordHash():string {return $this->passwordHash;}
     public function getAuthToken():string {return $this->authToken;}
     public function confirmed():bool {return $this->isConfirmed;}
+    public function getCreatedAt():string {return $this->createdAt;}
 
     public static function signUp(array $userData):User{
 

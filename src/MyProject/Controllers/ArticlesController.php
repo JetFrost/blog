@@ -26,7 +26,6 @@ class ArticlesController extends AbstractController {
 
         $comments = Comment::getCommentByArticleId($articleId);
 
-
         $author = $article->getAuthor();
 
         $this->view->renderHtml('articles/view.php', ['article' => $article, 'author' => $author, 'comments' => $comments]);
@@ -59,16 +58,6 @@ class ArticlesController extends AbstractController {
         }
 
         $this->view->renderHTML('articles/edit.php', ['article' => $article]);
-
-//        $article = Article::getById($articleId);
-//
-//        if ($article === null){
-//            throw new NotFoundException();
-//        }
-//
-//        $article->setName('newName');
-//        $article->setText('newText');
-//        $article->save();
     }
 
     public function add(){
@@ -98,6 +87,21 @@ class ArticlesController extends AbstractController {
 
     }
 
+    public function addComment($articleId){
+        if (!empty($_POST)){
+            $article = Article::getById($articleId);
+
+            if ($this->user === null) {
+                throw new UnauthorizedException();
+            }
+
+            CommentsController::add($_POST,$articleId, $this->user);
+        }
+
+        header('Location: /articles/' . $article->getId(), true, 302);
+        exit();
+    }
+
     public function delete($articleId){
         $article = Article::getById($articleId);
 
@@ -106,11 +110,7 @@ class ArticlesController extends AbstractController {
         }
 
         $article->delete();
-//        var_dump($article);
+        $this->view->renderHTML('articles/deleted.php');
     }
-
-//    public function addComment(){
-//        var_dump($_POST);
-//    }
 
 }

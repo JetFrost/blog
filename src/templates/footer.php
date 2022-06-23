@@ -1,17 +1,8 @@
-</td>
 
-<td width="300px" class="sidebar">
-    <div class="sidebarHeader">Меню</div>
-    <ul>
-        <li><a href="/">Главная страница</a></li>
-        <li><a href="/about-me">Обо мне</a></li>
-    </ul>
-</td>
-</tr>
-<tr>
-    <td class="footer" colspan="2">Все права защищены (c) Мой блог</td>
-</tr>
-</table>
-
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/scripts.js"></script>
 </body>
 </html>

@@ -68,7 +68,6 @@ abstract class ActiveRecordEntity{
     public function delete(){
         $db = Db::getInstance();
         $sql = 'DELETE FROM `'.static::getTableName().'` WHERE id = :id;';
-//        var_dump($sql);
         $db->query($sql, [':id' => $this->id]);
         $this->id = null;
     }
@@ -103,7 +102,7 @@ abstract class ActiveRecordEntity{
 
     public static function findAll():array {
         $db = Db::getInstance();
-        return $db->query('SELECT * FROM `'.static::getTableName().'`;', [], static::class);
+        return $db->query('SELECT * FROM `'.static::getTableName().'` ORDER BY id DESC;', [], static::class);
     }
 
     public static function getById($id) {
@@ -123,7 +122,6 @@ abstract class ActiveRecordEntity{
             return null;
         }
         return $result[0];
-//        return $result[0];
     }
 
     abstract protected static function getTableName():string;

@@ -1,4 +1,5 @@
-<?php include __DIR__ . '/../header.php'; ?>
-    <h1>Вы не авторизованы</h1>
-    Для доступа к этой странице нужно <a href="/users/login">войти на сайт</a>
-<?php include __DIR__ . '/../footer.php'; ?>
+
+<div style="text-align:center;">
+    <h1 style="margin-top: 100px; font-size: 40px;">Ви не авторизовані.</h1>
+    <p>Для доступу до цієї сторінки <a href="/users/login">увійти</a></p>
+</div>

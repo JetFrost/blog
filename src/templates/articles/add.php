@@ -1,15 +1,17 @@
 <?php include __DIR__ . '/../header.php'; ?>
-    <h1>Создание новой статьи</h1>
+    <h1>Створення нової статті</h1>
 <?php if(!empty($error)): ?>
     <div style="color: red;"><?= $error ?></div>
 <?php endif; ?>
     <form action="/articles/add" method="post">
-        <label for="name">Название статьи</label><br>
-        <input type="text" name="name" id="name" value="<?= $_POST['name'] ?? '' ?>" size="50"><br>
-        <br>
-        <label for="text">Текст статьи</label><br>
-        <textarea name="text" id="text" rows="10" cols="80"><?= $_POST['text'] ?? '' ?></textarea><br>
-        <br>
-        <input type="submit" value="Создать">
+        <div class="form-group">
+            <label for="name">Назва</label>
+            <input class="form-control" type="text" name="name" id="name" size="50" placeholder="Стаття...">
+        </div>
+        <div class="form-group mb-3">
+            <label for="exampleFormControlTextarea1">Текст статті</label>
+            <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Текст статті..."></textarea>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Створити">
     </form>
 <?php include __DIR__ . '/../footer.php'; ?>
